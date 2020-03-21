@@ -75,6 +75,7 @@ module.exports = (env, argv) => {
           test: /\.(jpe?g|png|gif)$/,
           loader: 'file-loader',
           options: {
+            esModule: false,
             outputPath: 'assets/',
           },
         },
@@ -106,6 +107,11 @@ module.exports = (env, argv) => {
         inject: 'body',
         filename: 'products',
       }),
+      new HtmlWebPackPlugin({
+        template: 'src/components/contactus/contactus.html',
+        inject: 'body',
+        filename: 'contactus.html',
+      }),
       new webpack.ProvidePlugin({
         $: 'jquery',
         jQuery: 'jquery',
@@ -132,6 +138,7 @@ module.exports = (env, argv) => {
           context: path.resolve(__dirname, 'src', 'vendors', 'mdb', 'mdb-addons'),
         },
       ]),
+
       new CleanWebpackPlugin(),
     ],
     optimization: {
